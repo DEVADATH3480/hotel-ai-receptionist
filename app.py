@@ -12,7 +12,7 @@ import dateutil.parser
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-change-me")
-app.permanent_session_lifetime = 60 * 60  # 1 hour
+app.permanent_session_lifetime = 60 * 60  
 
 
 client=OpenAI(api_key=(""))
