@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Luxury Hotel</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+nav{
+    position:fixed;
+    width:90%;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.2);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 30px;
+    z-index:1000;
+    border-radius:50px;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:20px;
+    align-items:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+}
+
+#darkToggle{
+    background:#e67e22;
+    border:none;
+    padding:8px 12px;
+    border-radius:20px;
+    color:white;
+    cursor:pointer;
+}
+
+
+.hero{
+    height:100vh;
+    background:url('https://images.unsplash.com/photo-1566073771259-6a8506099945') center/cover no-repeat;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    top:0;
+    left:0;
+}
+
+.hero *{
+    position:relative;
+    z-index:1;
+}
+
+.hero h1{
+    font-size:60px;
+}
+
+.hero button{
+    margin-top:20px;
+    padding:12px 30px;
+    border:none;
+    background:#e67e22;
+    color:white;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+#callBtn{
+    margin-top:15px;
+}
+
+
+section{
+    padding:100px 50px;
+    text-align:center;
+}
+
+
+.rooms{
+    display:flex;
+    gap:30px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.room{
+    width:300px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 8px 32px rgba(0,0,0,0.3);
+    transition:0.3s;
+}
+
+.room:hover{
+    transform:translateY(-10px);
+}
+
+.room img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.room h3{
+    margin:10px;
+}
+
+.room p{
+    color:#ddd;
+}
+
+.room button{
+    margin:15px;
+    padding:10px;
+    width:80%;
+    border:none;
+    background:#e67e22;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+
+form{
+    max-width:600px;
+    margin:auto;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(15px);
+    padding:30px;
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+input, select, textarea{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,0.3);
+    background:rgba(255,255,255,0.1);
+    color:white;
+}
+
+form button{
+    padding:12px;
+    border:none;
+    background:#e67e22;
+    color:white;
+    border-radius:5px;
+}
+
+
+#chat{
+    margin-top:20px;
+    max-width:600px;
+    background:rgba(0,0,0,0.4);
+    padding:15px;
+    border-radius:10px;
+}
+
+
+footer{
+    background:#020617;
+    text-align:center;
+    padding:20px;
+}
+
+
+.dark{
+    background:#020617;
+}
+
+.dark nav,
+.dark .room,
+.dark form{
+    background:rgba(255,255,255,0.05);
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h2>MY HOTEL</h2>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#rooms">Rooms</a></li>
+        <li><a href="#booking">Book</a></li>
+        <button id="darkToggle">🌙</button>
+    </ul>
+</nav>
+
+<div class="hero">
+    <h1>Luxury Stay Experience</h1>
+    <p>Comfort • Elegance • Perfection</p>
+
+    <button onclick="document.getElementById('booking').scrollIntoView()">Book Now</button>
+
+    <button id="callBtn" onclick="toggleCall()">📞 Start Call</button>
+
+    <div id="chat"></div>
+    <div id="result" style="margin-top:20px; font-size:20px; color:#22c55e;"></div>
+</div>
+
+<section id="rooms">
+    <h2>Our Rooms</h2>
+
+    <div class="rooms">
+        <div class="room">
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511">
+            <h3>Deluxe Room</h3>
+            <p>$100 / night</p>
+            <button onclick="document.getElementById('booking').scrollIntoView()">Book</button>
+        </div>
+
+        <div class="room">
+            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a">
+            <h3>Suite Room</h3>
+            <p>$200 / night</p>
+            <button onclick="document.getElementById('booking').scrollIntoView()">Book</button>
+        </div>
+
+        <div class="room">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b">
+            <h3>Luxury Room</h3>
+            <p>$300 / night</p>
+            <button onclick="document.getElementById('booking').scrollIntoView()">Book</button>
+        </div>
+    </div>
+</section>
+
+<section id="booking">
+    <h2>Book Your Stay</h2>
+
+    <form action="/book" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="tel" name="phone" placeholder="Phone">
+
+        <select name="room">
+            <option>Deluxe Room</option>
+            <option>Suite Room</option>
+            <option>Luxury Room</option>
+        </select>
+
+        <input type="date" name="date" required>
+        <input type="number" name="guests" placeholder="Guests">
+
+        <textarea name="request" placeholder="Special Request"></textarea>
+
+        <button type="submit">Confirm Booking</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2026 My Hotel</p>
+</footer>
+
+<script>
+
+const toggle = document.getElementById("darkToggle");
+
+toggle.onclick = () => {
+    document.body.classList.toggle("dark");
+
+    localStorage.setItem(
+        "mode",
+        document.body.classList.contains("dark") ? "dark" : "light"
+    );
+};
+
+if(localStorage.getItem("mode")==="dark"){
+    document.body.classList.add("dark");
+}
+</script>
+<script>
+let recognition;
+let isCalling = false;
+let currentAudio = null;
+let lastText = "";
+
+function toggleCall(){
+    const btn = document.getElementById("callBtn");
+
+    if(!isCalling){
+        isCalling = true;
+        btn.innerText = "🔴 End Call";
+        startListening();
+    } else {
+        isCalling = false;
+        btn.innerText = "📞 Start Call";
+
+        if(recognition) recognition.stop();
+        if(currentAudio) currentAudio.pause();
+    }
+}
+
+function startListening(){
+    recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+    recognition.continuous = true;
+    recognition.interimResults = false;
+    recognition.lang = "en-US";
+
+    recognition.onresult = async (event) => {
+        const text = event.results[event.results.length - 1][0].transcript;
+
+        if(text === lastText) return;
+        lastText = text;
+
+       
+        if(currentAudio){
+            currentAudio.pause();
+            currentAudio = null;
+        }
+
+        try {
+            const res = await fetch("/voice-text", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ text })
+            });
+
+            const data = await res.json();
+
+            // 🔊 play AI voice (NO TEXT SHOWN)
+            if(data.audio){
+                recognition.stop();
+
+                currentAudio = new Audio(data.audio);
+                currentAudio.play();
+
+                currentAudio.onended = () => {
+                    if(isCalling) recognition.start();
+                };
+            }
+
+           if (data.done) {
+               const r = document.getElementById("result");
+               if (r) r.innerText = data.reply;
+               isCalling = false;
+               document.getElementById("callBtn").innerText = "📞 Start Call";
+               if (recognition) recognition.stop();
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    recognition.onend = () => {
+        if(isCalling && !currentAudio){
+            recognition.start();
+        }
+    };
+
+    recognition.start();
+}
+</script>
+</body>
+</html>

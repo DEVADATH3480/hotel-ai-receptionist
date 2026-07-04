@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <style>
+        body { background:#0f172a; color:white; font-family:'Segoe UI',sans-serif;
+               display:flex; align-items:center; justify-content:center; height:100vh; }
+        form { background:rgba(255,255,255,0.08); padding:30px; border-radius:12px; width:320px; }
+        input { width:100%; padding:10px; margin:8px 0; border-radius:8px;
+                border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.05); color:white; }
+        button { width:100%; padding:10px; background:#e67e22; color:white; border:none; border-radius:8px; margin-top:10px; }
+        .err { color:#f87171; text-align:center; margin-top:10px; }
+    </style>
+</head>
+<body>
+<form method="POST">
+    <h2>Admin Login</h2>
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+    {% if error %}<div class="err">{{ error }}</div>{% endif %}
+</form>
+</body>
+</html>

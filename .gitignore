@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+venv/
+env/
+.env
+hotel.db
+static/reply_*.mp3
