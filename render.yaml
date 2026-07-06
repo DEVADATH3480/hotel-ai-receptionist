@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: hotel-ai-receptionist-1
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: SECRET_KEY
+        sync: false
