@@ -24,8 +24,6 @@ DB_PATH = os.path.join(BASE_DIR, "hotel.db")
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 USE_POSTGRES = bool(DATABASE_URL)
-print(f"DEBUG: DATABASE_URL length = {len(DATABASE_URL) if DATABASE_URL else 0}")
-print(f"DEBUG: starts with = {(DATABASE_URL or 'EMPTY')[:15]}")
 print("Using PostgreSQL" if USE_POSTGRES else "Using SQLite")
 
 
