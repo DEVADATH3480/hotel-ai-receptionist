@@ -182,13 +182,15 @@ def voice_text():
 Current booking data:
 {json.dumps(booking, indent=2)}
 
-Collect these fields in order: name, email, phone (10 digits), room (Deluxe/Suite/Luxury), date (YYYY-MM-DD), guests, request.
+Collect these fields in order: name, email, phone (10 digits), room (Deluxe/Suite/Luxury), date, guests, request.
+
 
 Rules:
 - Detect user's language, reply in the SAME language.
 - Accept corrections: if user says "no it's Devadath not David", update the name.
 - Combine partial emails if spelled in parts (e.g. "devadath" then "3490@gmail.com" = "devadath3490@gmail.com").
 - Ask ONLY the next missing field, one at a time. Never repeat filled fields.
+- For date: accept ANY natural format the user says (e.g. "July 20", "20 July 2026", "tomorrow", "next Friday"). Never ask for YYYY-MM-DD format. The system converts it automatically.
 - After 6 required fields filled, ask for special request. Accept "no"/"none"/"skip" as valid answer.
 - Set done=true when all 7 fields have any value (request can be "None").
 
